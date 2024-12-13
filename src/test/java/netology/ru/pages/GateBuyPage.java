@@ -1,7 +1,10 @@
 package netology.ru.pages;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import netology.ru.data.Card;
 import java.time.Duration;
+
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,7 +25,13 @@ public class GateBuyPage {
 
     private SelenideElement successfullyMessage = $(byText("Операция одобрена Банком.")).parent().$("[class=\"notification__content\"]");
     private SelenideElement rejectedMessage = $(byText("Ошибка! Банк отказал в проведении операции.")).parent().$("[class=\"notification__content\"]");
+    private SelenideElement invalidFormatError = $(byText("Неверный формат"));
 
+    private SelenideElement cardExpirationDateError = $(byText("Неверно указан срок действия карты"));
+    private SelenideElement cardExpiredError = $(byText("Истёк срок действия карты"));
+
+    private ElementsCollection invalidFormat4Error = $$(byText("Неверный формат"));
+    private SelenideElement requiredInputError = $(byText("Поле обязательно для заполнения"));
 
     private SelenideElement cancelMessage = $$("[class=\"icon-button__text\"]").first();
 
@@ -48,5 +57,22 @@ public class GateBuyPage {
 
     public void waitRejectedMessage() {
         rejectedMessage.shouldBe(visible, Duration.ofSeconds(10));
+    }
+
+    public void waitNotificationWrongFormat() {
+        invalidFormatError.shouldBe(visible);
+    }
+
+    public void waitNotificationExpirationDateError() {
+        cardExpirationDateError.shouldBe(visible);
+    }
+
+    public void waitNotificationExpiredError() {
+        cardExpiredError.shouldBe(visible);
+    }
+
+    public void waitNotificationWrongFormat4Fields() {
+        invalidFormat4Error.shouldHave(size(4));
+        requiredInputError.shouldBe(visible);
     }
 }
