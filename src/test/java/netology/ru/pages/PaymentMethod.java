@@ -16,8 +16,13 @@ public class PaymentMethod {
         heading.shouldBe(visible);
     }
 
-    public GateBuyPage goToBuyPage() {
+    public PaymentBuyPage goToBuyPage() {
         buyButton.click();
-        return new GateBuyPage();
+        return new PaymentBuyPage();
+    }
+
+    public CreditBuyPage goToCreditPage() {
+        creditButton.click();
+        return new CreditBuyPage();
     }
 }

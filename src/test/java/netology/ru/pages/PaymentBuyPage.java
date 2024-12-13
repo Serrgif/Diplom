@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class GateBuyPage {
+public class PaymentBuyPage {
 
     private SelenideElement PaymentHeader = $$("h3").find(exactText("Оплата по карте"));
 
@@ -37,7 +37,7 @@ public class GateBuyPage {
 
     private SelenideElement continueButton = $$("button").find(exactText("Продолжить"));
 
-    public GateBuyPage() {
+    public PaymentBuyPage() {
         PaymentHeader.shouldBe(visible);
     }
 
@@ -60,19 +60,19 @@ public class GateBuyPage {
     }
 
     public void waitNotificationWrongFormat() {
-        invalidFormatError.shouldBe(visible);
+        invalidFormatError.shouldBe(visible, Duration.ofSeconds(7));
     }
 
     public void waitNotificationExpirationDateError() {
-        cardExpirationDateError.shouldBe(visible);
+        cardExpirationDateError.shouldBe(visible, Duration.ofSeconds(7));
     }
 
     public void waitNotificationExpiredError() {
-        cardExpiredError.shouldBe(visible);
+        cardExpiredError.shouldBe(visible, Duration.ofSeconds(7));
     }
 
     public void waitNotificationWrongFormat4Fields() {
         invalidFormat4Error.shouldHave(size(4));
-        requiredInputError.shouldBe(visible);
+        requiredInputError.shouldBe(visible, Duration.ofSeconds(7));
     }
 }

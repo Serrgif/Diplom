@@ -1,6 +1,7 @@
 package netology.ru.tests;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
@@ -11,8 +12,8 @@ import netology.ru.pages.PaymentMethod;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class GateBuyTest {
+@Feature("Оплата тура по карте")
+public class PaymentBuyTest {
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
