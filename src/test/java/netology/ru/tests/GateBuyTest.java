@@ -35,11 +35,21 @@ public class GateBuyTest {
 
     @Story("Оплата по карте со статусом APPROVED")
     @Test
-    void buyPositiveAllFieldValidApproved() {
+    void buyApprovedCard() {
         val startPage = new PaymentMethod();
         val payment = startPage.goToBuyPage();
         payment.inputData(DataHelper.approvedCard());
         payment.waitSuccessfullyMessage();
         assertEquals("APPROVED", BDHelper.getPaymentStatus());
+    }
+
+    @Story("Оплата по карте со статусом DECLINE")
+    @Test
+    void buyDeclineCard() {
+        val startPage = new PaymentMethod();
+        val payment = startPage.goToBuyPage();
+        payment.inputData(DataHelper.approvedCard());
+        payment.waitRejectedMessage();
+        assertEquals("DECLINE", BDHelper.getPaymentStatus());
     }
 }

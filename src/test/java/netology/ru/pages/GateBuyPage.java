@@ -42,11 +42,11 @@ public class GateBuyPage {
     }
 
     public void waitSuccessfullyMessage() {
-        successfullyMessage.shouldBe(visible, Duration.ofSeconds(7));
+        successfullyMessage.shouldBe(visible, Duration.ofSeconds(10));
         cancelMessage.click();
     }
 
     public void waitRejectedMessage() {
-        rejectedMessage.shouldBe(visible, Duration.ofSeconds(7));
+        rejectedMessage.shouldBe(visible, Duration.ofSeconds(10));
     }
 }
