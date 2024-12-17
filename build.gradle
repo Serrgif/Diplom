@@ -6,9 +6,10 @@ plugins {
 
 group = 'ru.netology'
 version = '1.0-SNAPSHOT'
-tasks.named('test') {
-    finalizedBy 'allureReport' // Запускаем отчет после тестов
-}
+
+sourceCompatibility = 11
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 
 allure {
     version = '2.20.1'
@@ -32,16 +33,12 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
     implementation 'org.postgresql:postgresql:42.6.0'
 
-    testImplementation 'org.testng:testng:7.7.1'
-    implementation 'com.codeborne:selenide:6.16.0'
-    testImplementation 'io.rest-assured:rest-assured:5.2.0'
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.codeborne:selenide:6.17.2'
 
     implementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'io.qameta.allure:allure-selenide:2.20.1'
     implementation 'commons-dbutils:commons-dbutils:1.7'
 
-    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0'
     testImplementation 'io.qameta.allure:allure-junit5:2.20.1'
 
 }

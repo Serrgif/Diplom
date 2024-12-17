@@ -49,7 +49,7 @@ public class CreditBuyTest {
     void buyDeclineCard() {
         val startPage = new PaymentMethod();
         val payment = startPage.goToCreditPage();
-        payment.inputData(DataHelper.approvedCard());
+        payment.inputData(DataHelper.declinedCard());
         payment.waitRejectedMessage();
         assertEquals("DECLINE", BDHelper.getCreditStatus());
     }
@@ -63,6 +63,57 @@ public class CreditBuyTest {
         payment.waitNotificationWrongFormat4Fields();
         assertEquals("0", BDHelper.getOrderCount());
     }
+
+    @Story("Пустой номер карты при оплате")
+    @Test
+    void buyNoneCardNumber() {
+        val startPage = new PaymentMethod();
+        val payment = startPage.goToCreditPage();
+        payment.inputData(DataHelper.notNumberCard());
+        payment.waitNotificationWrongField1();
+        assertEquals("0", BDHelper.getOrderCount());
+    }
+
+    @Story("Пустой месяц при оплате")
+    @Test
+    void buyNoneMonth() {
+        val startPage = new PaymentMethod();
+        val payment = startPage.goToCreditPage();
+        payment.inputData(DataHelper.notMonth());
+        payment.waitNotificationWrongField1();
+        assertEquals("0", BDHelper.getOrderCount());
+    }
+    @Story("Пустой год при оплате")
+    @Test
+    void buyNoneYear() {
+        val startPage = new PaymentMethod();
+        val payment = startPage.goToCreditPage();
+        payment.inputData(DataHelper.notYear());
+        payment.waitNotificationWrongField1();
+        assertEquals("0", BDHelper.getOrderCount());
+    }
+
+    @Story("Пустой cvv при оплате")
+    @Test
+    void buyNoneCvv() {
+        val startPage = new PaymentMethod();
+        val payment = startPage.goToCreditPage();
+        payment.inputData(DataHelper.notCVV());
+        payment.waitNotificationWrongField1();
+        assertEquals("0", BDHelper.getOrderCount());
+    }
+
+    @Story("Пустой владелец при оплате")
+    @Test
+    void buyNoneOwner() {
+        val startPage = new PaymentMethod();
+        val payment = startPage.goToCreditPage();
+        payment.inputData(DataHelper.notOwner());
+        payment.waitNotificationWrongField2();
+        assertEquals("0", BDHelper.getOrderCount());
+    }
+
+
 
     @Story("В кредит: Оплата по несуществующей в БД карте")
     @Test

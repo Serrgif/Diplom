@@ -18,23 +18,61 @@ public class DataHelper {
     }
 
     public static Card approvedCard() {
-        return new Card(
-                "4444444444444441",
-                "08",
-                "25",
-                "IVAN IVANOV",
-                "999");
+        Faker faker = new Faker();
+        String owner = faker.name().firstName() + " " + faker.name().lastName();
+        String month = getShiftedMonth();
+        String year = getShiftedYear(1);
+        String cvv = faker.number().digits(3);
+        return new Card("4444444444444441", month, year, owner, cvv);
     }
 
     public static Card declinedCard() {
-        return new Card(
-                "4444444444444442",
-                "08",
-                "25",
-                "IVAN IVANOV",
-                "999");
+        Faker faker = new Faker();
+        String owner = faker.name().firstName() + " " + faker.name().lastName();
+        String month = getShiftedMonth();
+        String year = getShiftedYear(1);
+        String cvv = faker.number().digits(3);
+        return new Card("4444444444444442", month, year, owner, cvv);
     }
 
+    public static Card notNumberCard() {
+        Faker faker = new Faker();
+        String owner = faker.name().firstName() + " " + faker.name().lastName();
+        String month = getShiftedMonth();
+        String year = getShiftedYear(1);
+        String cvv = faker.number().digits(3);
+        return new Card("", month, year, owner, cvv);
+    }
+
+    public static Card notMonth() {
+        Faker faker = new Faker();
+        String owner = faker.name().firstName() + " " + faker.name().lastName();
+        String year = getShiftedYear(1);
+        String cvv = faker.number().digits(3);
+        return new Card("4444444444444441", "", year, owner, cvv);
+    }
+    public static Card notYear() {
+        Faker faker = new Faker();
+        String owner = faker.name().firstName() + " " + faker.name().lastName();
+        String month = getShiftedMonth();
+        String cvv = faker.number().digits(3);
+        return new Card("4444444444444441", month, "", owner, cvv);
+    }
+
+    public static Card notCVV() {
+        Faker faker = new Faker();
+        String owner = faker.name().firstName() + " " + faker.name().lastName();
+        String month = getShiftedMonth();
+        String year = getShiftedYear(1);
+        return new Card("4444444444444441", month, year, owner, "");
+    }
+    public static Card notOwner() {
+        Faker faker = new Faker();
+        String month = getShiftedMonth();
+        String year = getShiftedYear(1);
+        String cvv = faker.number().digits(3);
+        return new Card("4444444444444441", month, year, "", cvv);
+    }
     public static Card getEmptyCard() {
         return new Card("",
                 "",

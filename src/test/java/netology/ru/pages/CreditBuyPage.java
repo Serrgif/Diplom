@@ -66,5 +66,12 @@ public class CreditBuyPage {
     public void waitNotificationWrongFormat4Fields() {
         invalidFormat4Error.shouldHave(size(4));
         requiredInputError.shouldBe(visible, Duration.ofSeconds(7));
+
+    }
+    public void waitNotificationWrongField1() {
+        invalidFormat4Error.first().shouldBe(visible, Duration.ofSeconds(7));
+    }
+    public void waitNotificationWrongField2() {
+        requiredInputError.shouldBe(visible, Duration.ofSeconds(7));
     }
 }
